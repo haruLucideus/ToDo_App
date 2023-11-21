@@ -43,8 +43,12 @@ class _HomePageState extends State<HomePage> {
   // save new task
   void saveNewTask() {
     setState(() {
-      db.toDoList.add([_controller.text, false]);
-      _controller.clear();
+      if (_controller.text != '') {
+        db.toDoList.add([_controller.text, false]);
+        _controller.clear();
+      } else {
+        _controller.clear();
+      }
     });
     Navigator.of(context).pop();
     db.updateDataBase();
